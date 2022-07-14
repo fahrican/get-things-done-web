@@ -1,8 +1,7 @@
 <template>
   <h1>All Open Tasks</h1>
   <p>{{ quote }}</p>
-<!--  <button @click="createTask">create task</button>
-  <button @click="createPost">create post</button>-->
+  <button @click="createTask">create task</button>
 </template>
 
 <script lang="ts">
@@ -28,20 +27,25 @@ export default defineComponent({
 
     loadQuote()
 
-/*    const createTask = () => {
-      axios.post('http://localhost:8080/api/create',
-          JSON.stringify({
-            description: "Create WEB FE",
-            is_reminder_set: false,
-            is_task_open: true,
-            created_on: "2022-06-22T23:35:53",
-            time_interval: "24h",
-            time_taken: 0
-          })).then(response => {
-        console.log(response);
-      })
+    const createTask = async () => {
+      try {
+        const response = await TaskApi.createTask(
+            {
+              description: "Look at Vuetify4",
+              is_reminder_set: false,
+              is_task_open: true,
+              created_on: "2022-06-22T23:35:53",
+              time_interval: "24h",
+              time_taken: 0,
+              priority: 0
+            })
+        console.log(response)
+      } catch (err) {
+        console.log('error createTask: ' + err)
+      }
     }
 
+    /*
     const createPost = () => {
       axios.post('https://jsonplaceholder.typicode.com/posts',
           JSON.stringify({
@@ -61,7 +65,7 @@ export default defineComponent({
         });
     */
 
-    return {quote}
+    return {quote, createTask}
   }
 });
 </script>
