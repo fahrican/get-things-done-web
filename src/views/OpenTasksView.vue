@@ -45,26 +45,6 @@ export default defineComponent({
       }
     }
 
-    /*
-    const createPost = () => {
-      axios.post('https://jsonplaceholder.typicode.com/posts',
-          JSON.stringify({
-            userId: 1,
-            title: 'test',
-            description: 'test desc'
-          })).then(response => {
-        console.log(response);
-      })
-    }*/
-
-    /*
-
-        axios.get('http://localhost:8080/api/open-tasks').then(response => {
-          quote.value = response.data[0]
-          console.log(quote.value);
-        });
-    */
-
     return {quote, createTask}
   }
 });
