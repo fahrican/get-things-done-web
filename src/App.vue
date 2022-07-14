@@ -1,11 +1,11 @@
 <template>
   <header>
-    <router-link id="nav-title" to="/">
+    <router-link class="logo" to="/">
       <img src="../src/assets/logo_getthingdone.png" alt="get_things_done logo" width="344"
            height="100">
     </router-link>
     <nav>
-      <ul>
+      <ul class="menu">
         <li>
           <router-link :to="{name: 'open-tasks'}">Open Tasks</router-link>
         </li>
@@ -73,8 +73,69 @@ header a {
 }
 
 header a:hover {
-  color: #b2dfdb;
+  color: #56BEE4;
 }
+
+.menu,
+.submenu {
+  list-style-type: none;
+}
+
+
+/* Tablet menu */
+@media all and (min-width: 700px) {
+  .menu {
+    justify-content: center;
+  }
+
+  .logo {
+    flex: 1;
+  }
+}
+
+
+/* Desktop menu */
+@media all and (min-width: 960px) {
+  .menu {
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    background: none;
+  }
+
+  .logo {
+    order: 0;
+  }
+}
+
+
+/* Mobile menu */
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu li a {
+  display: block;
+  padding: 15px 5px;
+}
+
+.menu li router-link {
+  display: block;
+  padding: 15px 5px;
+}
+
+.menu li.subitem a {
+  padding: 15px;
+}
+
+/* Button up from tablet screen */
+.menu li.button a {
+  padding: 10px 15px;
+  margin: 5px 0;
+}
+
 </style>
 <script>
 export default {}
