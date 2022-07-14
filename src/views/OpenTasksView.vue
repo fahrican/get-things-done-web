@@ -7,6 +7,7 @@
 <script lang="ts">
 import {defineComponent, ref} from "vue";
 import TaskApi from "@/services/TaskApi";
+import Task from "@/types/Task";
 
 
 export default defineComponent({
@@ -29,16 +30,16 @@ export default defineComponent({
 
     const createTask = async () => {
       try {
-        const response = await TaskApi.createTask(
-            {
-              description: "Look at Vuetify4",
-              is_reminder_set: false,
-              is_task_open: true,
-              created_on: "2022-06-22T23:35:53",
-              time_interval: "24h",
-              time_taken: 0,
-              priority: 0
-            })
+        const task: Task = {
+          description: "Look at Vuetify5",
+          is_reminder_set: false,
+          is_task_open: true,
+          created_on: "2022-06-22T23:35:53",
+          time_interval: "24h",
+          time_taken: 0,
+          priority: 1
+        }
+        const response = await TaskApi.createTask(task)
         console.log(response)
       } catch (err) {
         console.log('error createTask: ' + err)

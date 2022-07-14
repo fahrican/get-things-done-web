@@ -1,10 +1,11 @@
 import Api from "@/services/Api";
+import Task from "@/types/Task";
 
 export default {
     getTasks() {
         return Api().get('/api/open-tasks')
     },
-    createTask(data: { is_reminder_set: boolean; created_on: string; description: string; priority: number; time_interval: string; time_taken: number; is_task_open: boolean }) {
+    createTask(data: Task) {
         return Api().post('/api/create', data)
     }
 }
