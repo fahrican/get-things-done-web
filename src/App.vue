@@ -18,16 +18,8 @@
       </ul>
     </nav>
   </header>
-  <OpenTasksView/>
+  <router-view/>
 </template>
-
-<script>
-import OpenTasksView from "@/views/OpenTasksView";
-
-export default {
-  components: {OpenTasksView}
-}
-</script>
 
 <style scoped>
 
