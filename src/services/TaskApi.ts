@@ -8,6 +8,9 @@ export default {
     getClosedTasks() {
         return Api().get('/api/closed-tasks')
     },
+    getAllTasks() {
+        return Api().get('/api/all-tasks')
+    },
     createTask(data: CreateTaskRequest) {
         return Api().post('/api/create', data)
     }
