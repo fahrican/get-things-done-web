@@ -105,7 +105,7 @@ export default defineComponent({
     },
     async fetchTasks() {
       try {
-        const response = await TaskApi.getTasks();
+        const response = await TaskApi.getOpenTasks();
         console.log(response.data);
         return response.data
       } catch (err) {

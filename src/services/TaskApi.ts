@@ -2,7 +2,7 @@ import Api from "@/services/Api";
 import CreateTaskRequest from "@/types/CreateTaskRequest";
 
 export default {
-    getTasks() {
+    getOpenTasks() {
         return Api().get('/api/open-tasks')
     },
     createTask(data: CreateTaskRequest) {
