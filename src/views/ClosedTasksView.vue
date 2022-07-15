@@ -32,7 +32,6 @@ export default defineComponent({
   },
   async created() {
     this.tasks = await this.fetchClosedTasks();
-    console.log(`main tasks: ${this.tasks}`);
   },
   methods: {
     async fetchClosedTasks() {

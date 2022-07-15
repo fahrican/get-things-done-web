@@ -34,8 +34,7 @@ export default defineComponent({
 
   },
   async created() {
-    this.tasks = await this.fetchTasks();
-    console.log(`main tasks: ${this.tasks}`);
+    this.tasks = await this.fetchOpenTasks();
   },
   /*  setup() {
 
@@ -103,10 +102,9 @@ export default defineComponent({
             : alert('Error while deleting task');
       }
     },
-    async fetchTasks() {
+    async fetchOpenTasks() {
       try {
         const response = await TaskApi.getOpenTasks();
-        console.log(response.data);
         return response.data
       } catch (err) {
         console.log('error loadQuote: ' + err)
