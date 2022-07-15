@@ -18,7 +18,16 @@
       </ul>
     </nav>
   </header>
+  <OpenTasksView/>
 </template>
+
+<script>
+import OpenTasksView from "@/views/OpenTasksView";
+
+export default {
+  components: {OpenTasksView}
+}
+</script>
 
 <style scoped>
 
@@ -137,6 +146,3 @@ header a:hover {
 }
 
 </style>
-<script>
-export default {}
-</script>

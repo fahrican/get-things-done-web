@@ -1,4 +1,5 @@
-interface Task {
+interface TaskObj {
+    id: number
     description: string
     is_reminder_set: boolean
     created_on: string
@@ -8,5 +9,4 @@ interface Task {
     is_task_open: boolean
 }
 
-
-export default Task
+export default TaskObj
