@@ -3,6 +3,7 @@ import OpenTasksView from "@/views/OpenTasksView.vue";
 import AllTasksView from "@/views/AllTasksView.vue";
 import ClosedTasksView from "@/views/ClosedTasksView.vue";
 import NotFoundView from "@/views/NotFoundView.vue";
+import CreateTaskView from "@/views/CreateTaskView.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -19,6 +20,11 @@ const routes: Array<RouteRecordRaw> = [
         path: '/all-tasks',
         name: 'all-tasks',
         component: AllTasksView
+    },
+    {
+        path: '/create-task',
+        name: 'create-task',
+        component: CreateTaskView
     },
     {
         path: '/',

@@ -16,6 +16,7 @@
           <router-link :to="{name: 'all-tasks'}">All Tasks</router-link>
         </li>
       </ul>
+      <button><router-link :to="{name: 'create-task'}">Create Task</router-link></button>
     </nav>
   </header>
   <router-view/>
