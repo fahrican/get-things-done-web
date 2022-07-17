@@ -55,14 +55,12 @@ export default defineComponent({
     })
 
     const onSubmit = async (e: Event) => {
-
-
       e.preventDefault()
       if (!myTask.description) {
         alert('Please add a task')
         return
       }
-      const newTask = {
+      const newTask: MyTask = {
         description: myTask.description,
         time_interval: myTask.time_interval,
         time_taken: myTask.time_taken,
@@ -77,6 +75,7 @@ export default defineComponent({
       myTask.is_reminder_set = false;
       try {
         const response = await TaskApi.createTask(newTask)
+        console.log(response.data)
         return response.data
       } catch (err) {
         console.log('error loadQuote: ' + err)
