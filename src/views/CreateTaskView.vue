@@ -42,7 +42,7 @@ import TaskApi from "@/services/TaskApi";
 export default defineComponent({
   name: "AddTask",
   components: {},
-  setup(props, {emit}) {
+  setup() {
 
     const myTask: MyTask = reactive({
       description: '',
@@ -54,13 +54,8 @@ export default defineComponent({
       is_task_open: true,
     })
 
-    const onSubmit = async (e: Event) => {
-      e.preventDefault()
-      if (!myTask.description) {
-        alert('Please add a task')
-        return
-      }
-      const newTask: MyTask = {
+    function createNewTask(): MyTask {
+      return {
         description: myTask.description,
         time_interval: myTask.time_interval,
         time_taken: myTask.time_taken,
@@ -69,17 +64,35 @@ export default defineComponent({
         created_on: getTimestamp(),
         is_task_open: true
       };
+    }
+
+    function setPropertiesBlank() {
       myTask.description = '';
       myTask.time_interval = '';
       myTask.time_taken = 0;
       myTask.is_reminder_set = false;
+    }
+
+    async function tryPostRequest(newTask: MyTask) {
       try {
         const response = await TaskApi.createTask(newTask)
         console.log(response.data)
         return response.data
       } catch (err) {
-        console.log('error loadQuote: ' + err)
+        console.log(err)
       }
+    }
+
+    const onSubmit = async (e: Event) => {
+      e.preventDefault()
+      if (!myTask.description) {
+        alert('Please add a task')
+        return
+      }
+      const newTask = createNewTask();
+      setPropertiesBlank();
+
+      return await tryPostRequest(newTask);
     }
 
 
