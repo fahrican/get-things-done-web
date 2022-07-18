@@ -13,5 +13,8 @@ export default {
     },
     createTask(data: CreateTaskRequest) {
         return Api().post('/api/create', data)
+    },
+    deleteTask(id: number) {
+        return Api().delete(`/api/delete/${id}`)
     }
 }
