@@ -95,7 +95,7 @@ export default defineComponent({
     },
     async deleteTask(id: number): Promise<void> {
       if (confirm('Are you sure, you want to delete?')) {
-        const res = await fetch(`http://localhost:3000/tasks/${id}`, {method: 'DELETE'});
+        const res = await TaskApi.deleteTask(id);
 
         res.status === 200
             ? (this.tasks = this.tasks.filter((task) => task.id !== id))
