@@ -6,11 +6,11 @@
     </div>
     <div class="form-control">
       <label>Time Interval</label>
-      <input type="text" v-model="myTask.time_interval" name="time_interval" placeholder="24h"/>
+      <input type="text" v-model="myTask.timeInterval" name="time_interval" placeholder="24h"/>
     </div>
     <div class="form-control">
       <label>Time Taken</label>
-      <input type="number" v-model="myTask.time_taken" name="time_taken" placeholder="0"/>
+      <input type="number" v-model="myTask.timeTaken" name="time_taken" placeholder="0"/>
     </div>
     <div>
       <p>Please select your priority:</p>
@@ -26,7 +26,7 @@
     </div>
     <div class="form-control form-control-check">
       <label>Set Reminder</label>
-      <input type="checkbox" v-model="myTask.is_reminder_set" name="reminder"/>
+      <input type="checkbox" v-model="myTask.isReminderSet" name="reminder"/>
     </div>
 
     <input type="submit" value="Save Task" class="btn btn-block"/>
@@ -36,44 +36,50 @@
 <script lang="ts">
 import {defineComponent, reactive} from 'vue'
 import moment from "moment";
-import {MyTask} from "@/types/MyTask";
 import TaskApi from "@/services/TaskApi";
+import {TaskRequest} from "@/types/TaskRequest";
 
 export default defineComponent({
   name: "AddTask",
   components: {},
   setup() {
 
-    const myTask: MyTask = reactive({
-      description: '',
-      is_reminder_set: false,
-      created_on: '',
-      priority: 0,
-      time_interval: '',
-      time_taken: 0,
-      is_task_open: true,
+    const myTask: TaskRequest = reactive({
+      description: "",
+      createdOn: "",
+      timeInterval: "",
+      priority: 1,
+      finishedOn: "",
+      id: 0,
+      isReminderSet: false,
+      isTaskOpen: true,
+      startedOn: "",
+      timeTaken: 0
     })
 
-    function createNewTask(): MyTask {
+    function createNewTask(): TaskRequest {
       return {
         description: myTask.description,
-        time_interval: myTask.time_interval,
-        time_taken: myTask.time_taken,
+        timeInterval: myTask.timeInterval,
+        timeTaken: myTask.timeTaken,
         priority: myTask.priority,
-        is_reminder_set: myTask.is_reminder_set,
-        created_on: getTimestamp(),
-        is_task_open: true
+        isReminderSet: myTask.isReminderSet,
+        createdOn: getTimestamp(),
+        isTaskOpen: true,
+        finishedOn: "",
+        id: 0,
+        startedOn: "",
       };
     }
 
     function setPropertiesBlank() {
       myTask.description = '';
-      myTask.time_interval = '';
-      myTask.time_taken = 0;
-      myTask.is_reminder_set = false;
+      myTask.timeInterval = '';
+      myTask.timeTaken = 0;
+      myTask.isReminderSet = false;
     }
 
-    async function tryPostRequest(newTask: MyTask) {
+    async function tryPostRequest(newTask: TaskRequest) {
       try {
         const response = await TaskApi.createTask(newTask)
         console.log(response.data)

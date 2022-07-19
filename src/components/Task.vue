@@ -1,7 +1,7 @@
 <template>
-  <div @dblclick="$emit('toggle-reminder', task.id)" :class="[task.is_reminder_set ? 'reminder' : '', 'task']">
+  <div @dblclick="$emit('toggle-reminder', task.id)" :class="[task.isReminderSet ? 'reminder' : '', 'task']">
     <h3>{{ task.description }} <i @click="$emit('delete-task', task.id)" class="fas fa-times"/></h3>
-    <p>{{ task.created_on }}</p>
+    <p>{{ task.createdOn }}</p>
   </div>
 </template>
 

@@ -1,5 +1,4 @@
 import Api from "@/services/Api";
-import CreateTaskRequest from "@/types/CreateTaskRequest";
 import {TaskRequest} from "@/types/TaskRequest";
 
 export default {
@@ -15,7 +14,7 @@ export default {
     getAllTasks() {
         return Api().get('/api/all-tasks')
     },
-    createTask(data: CreateTaskRequest) {
+    createTask(data: TaskRequest) {
         return Api().post('/api/create', data)
     },
     deleteTask(id: number) {
