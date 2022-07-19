@@ -8,9 +8,10 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from "vue";
+import {defineComponent} from "vue";
 import TaskApi from "@/services/TaskApi";
 import Tasks from "@/components/Tasks.vue";
+import {TaskRequest} from "@/types/TaskRequest";
 
 
 export default defineComponent({
@@ -73,7 +74,7 @@ export default defineComponent({
       return {quote, createTask}
     },*/
   methods: {
-    async toggleReminder(id: number): Promise<void> {
+    async toggleReminder1(id: number): Promise<void> {
       const taskToToggle = await this.fetchTask(id);
       const updateTask = {...taskToToggle, reminder: !taskToToggle.reminder};
       const res = await fetch(`http://localhost:3000/tasks/${id}`, {
@@ -89,9 +90,37 @@ export default defineComponent({
         reminder: data.reminder
       } : task);
     },
+    async toggleReminder(id: number): Promise<void> {
+      const taskToToggle = await this.fetchTask(id);
+      console.log(taskToToggle);
+      const updateTask: TaskRequest = {
+        description: "meet Stefan",
+        createdOn: "2022-06-24T23:12:53",
+        timeInterval: "7d",
+        priority: 1,
+        finishedOn: "",
+        id: 0,
+        isReminderSet: false,
+        isTaskOpen: true,
+        startedOn: "",
+        timeTaken: 0
+      };
+      console.log(updateTask);
+      const res = await TaskApi.updateTaskWithUri(id, updateTask)
+      console.log('response: ');
+      console.log(res);
+
+      const data = await res.data
+      console.log(data);
+
+      this.tasks = this.tasks.map((task) => task.id === id ? {
+        ...task,
+        reminder: data.reminder
+      } : task);
+    },
     async fetchTask(id: number) {
-      const res = await fetch(`http://localhost:3000/tasks/${id}`);
-      return res.json();
+      const res = await TaskApi.getTask(id);
+      return res.data
     },
     async deleteTask(id: number): Promise<void> {
       if (confirm('Are you sure, you want to delete?')) {
