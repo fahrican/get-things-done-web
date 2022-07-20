@@ -82,7 +82,6 @@ export default defineComponent({
     async function tryPostRequest(newTask: TaskRequest) {
       try {
         const response = await TaskApi.createTask(newTask)
-        console.log(response.data)
         return response.data
       } catch (err) {
         console.log(err)
@@ -97,17 +96,14 @@ export default defineComponent({
       }
       const newTask = createNewTask();
       setPropertiesBlank();
-
       return await tryPostRequest(newTask);
     }
-
 
     const getTimestamp = () => {
       // example: "2022-06-22T23:35:53"
       const DATE_TIME_FORMAT = 'YYYY-MM-DDTHH:mm:ss';
       return (moment(new Date())).format(DATE_TIME_FORMAT);
     }
-
     return {myTask, onSubmit}
   }
 });
