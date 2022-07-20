@@ -1,17 +1,20 @@
 <template>
   <div @dblclick="$emit('toggle-reminder', task.id)" :class="[task.isReminderSet ? 'reminder' : '', 'task']">
     <h3>{{ task.description }} <i @click="$emit('delete-task', task.id)" class="fas fa-times"/></h3>
-    <p>{{ task.createdOn }}</p>
+    <p>createdOn: {{ task.createdOn }}</p>
+    <p>time interval: {{ task.timeInterval }}</p>
+    <p>priority: {{ task.priority }}</p>
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import {defineComponent, PropType} from "vue";
+import {TaskRequest} from "@/types/TaskRequest";
 
 export default defineComponent({
   name: "TaskComponent",
   props: {
-    task: Object
+    task: Object as PropType<TaskRequest>
   }
 });
 </script>
