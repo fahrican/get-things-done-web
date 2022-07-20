@@ -9,9 +9,10 @@
 
 <script lang="ts">
 import Task from './Task.vue';
-import {defineComponent} from "vue";
+import {defineComponent, PropType} from "vue";
 import {TaskRequest} from "@/types/TaskRequest";
 import TaskApi from "@/services/TaskApi";
+import {TaskState} from "@/types/TaskState";
 
 
 export default defineComponent({
@@ -19,6 +20,12 @@ export default defineComponent({
   emits: ["delete-task", "toggle-reminder"],
   components: {
     Task
+  },
+  props: {
+    taskState: {
+      type: Object as PropType<TaskState>,
+      required: true
+    }
   },
   data() {
     return {
@@ -35,7 +42,8 @@ export default defineComponent({
     }
   },
   async created() {
-    this.tasks = await this.fetchOpenTasks();
+    this.tasks = [];
+    this.tasks = await this.fetchTasks();
   },
   methods: {
     async toggleReminder1(id: number): Promise<void> {
@@ -96,10 +104,18 @@ export default defineComponent({
             : alert('Error while deleting task');
       }
     },
-    async fetchOpenTasks() {
+    async fetchTasks() {
       try {
-        const response = await TaskApi.getOpenTasks();
-        return response.data
+        this.tasks = [];
+        let response = null;
+        if (this.taskState === TaskState.OPEN) {
+          response = await TaskApi.getOpenTasks();
+        } else if (this.taskState === TaskState.CLOSED) {
+          response = await TaskApi.getClosedTasks();
+        } else if (this.taskState === TaskState.ALL) {
+          response = await TaskApi.getAllTasks();
+        }
+        return response?.data
       } catch (err) {
         console.log('error loadQuote: ' + err)
       }
