@@ -1,11 +1,12 @@
 <template>
-  <h1>All Open Tasks</h1>
-  <Tasks/>
+  <h1>Open Tasks</h1>
+  <Tasks :task-state="taskState"/>
 </template>
 
 <script lang="ts">
 import {defineComponent} from "vue";
 import Tasks from "@/components/Tasks.vue";
+import {TaskState} from "@/types/TaskState";
 
 
 export default defineComponent({
@@ -13,8 +14,11 @@ export default defineComponent({
   components: {
     Tasks
   },
-
-
+  data() {
+    return {
+      taskState: TaskState.OPEN
+    }
+  }
   /*  setup() {
 
       const quote = ref('');
@@ -51,7 +55,6 @@ export default defineComponent({
 
       return {quote, createTask}
     },*/
-  methods: {}
 });
 </script>
 
