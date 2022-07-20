@@ -4,7 +4,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import {defineComponent, ref} from "vue";
 import Tasks from "@/components/Tasks.vue";
 import {TaskState} from "@/types/TaskState";
 
@@ -14,10 +14,10 @@ export default defineComponent({
   components: {
     Tasks
   },
-  data() {
-    return {
-      taskState: TaskState.ALL
-    }
+  setup() {
+    const taskState = ref(TaskState.ALL)
+
+    return {taskState}
   }
 });
 </script>
