@@ -42,7 +42,6 @@ export default defineComponent({
     }
   },
   async created() {
-    this.tasks = [];
     this.tasks = await this.fetchTasks();
   },
   methods: {
