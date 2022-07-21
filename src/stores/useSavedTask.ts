@@ -7,7 +7,7 @@ export const useSavedTask = defineStore("selectedTask", {
         saveTask: Object as PropType<TaskRequest>
     }),
     getters: {
-        doubleCount: (state) => {
+        getSavedTask: (state) => {
             state.saveTask
         }
     },

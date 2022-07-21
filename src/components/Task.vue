@@ -38,7 +38,7 @@ export default defineComponent({
 
     const storeSelectedTask = (task: TaskRequest) => {
       selectedTask.storeTask(task);
-      console.log('success Pinia storing');
+      console.log('TaskComponent');
       console.log(selectedTask.$state);
     }
 
