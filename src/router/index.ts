@@ -4,6 +4,7 @@ import AllTasksView from "@/views/AllTasksView.vue";
 import ClosedTasksView from "@/views/ClosedTasksView.vue";
 import NotFoundView from "@/views/NotFoundView.vue";
 import CreateTaskView from "@/views/CreateTaskView.vue";
+import SingleTaskView from "@/views/SingleTaskView.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -25,6 +26,11 @@ const routes: Array<RouteRecordRaw> = [
         path: '/create-task',
         name: 'create-task',
         component: CreateTaskView
+    },
+    {
+        path: '/single-task',
+        name: 'single-task',
+        component: SingleTaskView
     },
     {
         path: '/',

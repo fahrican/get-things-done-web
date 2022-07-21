@@ -1,6 +1,9 @@
 <template>
-  <div @dblclick="$emit('toggle-reminder', task.id)" :class="[task.isReminderSet ? 'reminder' : '', 'task']">
-    <h3>{{ task.description }} <i @click="$emit('delete-task', task.id)" class="fas fa-times"/></h3>
+  <!--@dblclick="$emit('toggle-reminder', task.id)" :class="[task.isReminderSet ? 'reminder' : '', 'task']"-->
+  <div class="task">
+    <h3>
+      <router-link to="single-task">{{ task.description }}</router-link>
+      <i @click="$emit('delete-task', task.id)" class="fas fa-times"/></h3>
     <p>createdOn: {{ task.createdOn }}</p>
     <p>time interval: {{ task.timeInterval }}</p>
     <p>priority: {{ task.priority }}</p>
