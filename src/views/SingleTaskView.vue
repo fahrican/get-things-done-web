@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import {defineComponent} from "vue";
-import {storeToRefs, mapActions} from "pinia";
+import {storeToRefs} from "pinia";
 import {useSavedTask} from "@/stores/useSavedTask";
 
 
@@ -18,8 +18,6 @@ export default defineComponent({
   setup() {
     const selectedTask = useSavedTask();
     const {saveTask} = storeToRefs(selectedTask);
-    console.log('SingleTaskView');
-    console.log(saveTask);
 
     return {saveTask}
   }

@@ -7,17 +7,12 @@
     <p>createdOn: {{ task.createdOn }}</p>
     <p>time interval: {{ task.timeInterval }}</p>
     <p>priority: {{ task.priority }}</p>
-    <p>name: {{ name }}</p>
-    <p>counter: {{ counter }}</p>
-    <button @click="clearVal">click</button>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent, PropType} from "vue";
 import {TaskRequest} from "@/types/TaskRequest";
-import {storeToRefs, mapActions} from "pinia";
-import {useCounterStore} from "@/stores/useCounter";
 import {useSavedTask} from "@/stores/useSavedTask";
 
 
@@ -27,22 +22,11 @@ export default defineComponent({
     task: Object as PropType<TaskRequest>
   },
   setup() {
-    const main = useCounterStore();
-    const {counter, name, doubleCount} = storeToRefs(main);
-
     const selectedTask = useSavedTask();
 
-    const clearVal = () => {
-      main.$state = {counter: 123, name: 'jacko'};
-    }
+    const storeSelectedTask = (task: TaskRequest) => selectedTask.storeTask(task);
 
-    const storeSelectedTask = (task: TaskRequest) => {
-      selectedTask.storeTask(task);
-      console.log('TaskComponent');
-      console.log(selectedTask.$state);
-    }
-
-    return {counter, name, doubleCount, clearVal, storeSelectedTask}
+    return {storeSelectedTask}
   }
 });
 </script>
