@@ -4,7 +4,7 @@
     <h3>
       <router-link @click="storeSelectedTask(task)" to="single-task">{{ task.description }}</router-link>
       <i @click="$emit('delete-task', task.id)" class="fas fa-times"/>
-      <router-link to="edit-task"><i class="fas fa-edit"/></router-link>
+      <router-link @click="storeSelectedTask(task)" to="edit-task"><i class="fas fa-edit"/></router-link>
     </h3>
     <p>createdOn: {{ task.createdOn }}</p>
     <p>time interval: {{ task.timeInterval }}</p>
