@@ -3,7 +3,9 @@
   <div class="task">
     <h3>
       <router-link @click="storeSelectedTask(task)" to="single-task">{{ task.description }}</router-link>
-      <i @click="$emit('delete-task', task.id)" class="fas fa-times"/></h3>
+      <i @click="$emit('delete-task', task.id)" class="fas fa-times"/>
+      <router-link to="edit-task"><i class="fas fa-edit"/></router-link>
+    </h3>
     <p>createdOn: {{ task.createdOn }}</p>
     <p>time interval: {{ task.timeInterval }}</p>
     <p>priority: {{ task.priority }}</p>
@@ -32,7 +34,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.fas {
+.fas.fa-times {
   color: red;
 }
 
