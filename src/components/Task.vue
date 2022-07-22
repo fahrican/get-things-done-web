@@ -3,8 +3,11 @@
   <div class="task">
     <h3>
       <router-link @click="storeSelectedTask(task)" to="single-task">{{ task.description }}</router-link>
-      <i @click="$emit('delete-task', task.id)" class="fas fa-times"/>
-      <router-link @click="storeSelectedTask(task)" to="edit-task"><i class="fas fa-edit"/></router-link>
+      <el-button @click="$emit('delete-task', task.id)" type="danger" :icon="Delete" circle />
+
+      <router-link @click="storeSelectedTask(task)" to="edit-task" :icon="Edit">
+        <el-button type="primary" :icon="Edit" circle />
+      </router-link>
     </h3>
     <p>createdOn: {{ task.createdOn }}</p>
     <p>time interval: {{ task.timeInterval }}</p>
@@ -16,6 +19,7 @@
 import {defineComponent, PropType} from "vue";
 import {TaskRequest} from "@/types/TaskRequest";
 import {useSavedTask} from "@/stores/useSavedTask";
+import {Delete, Edit} from '@element-plus/icons-vue'
 
 
 export default defineComponent({
@@ -28,15 +32,12 @@ export default defineComponent({
 
     const storeSelectedTask = (task: TaskRequest) => selectedTask.storeTask(task);
 
-    return {storeSelectedTask}
+    return {storeSelectedTask, Edit, Delete}
   }
 });
 </script>
 
 <style scoped>
-.fas.fa-times {
-  color: red;
-}
 
 .task {
   background: #f4f4f4;

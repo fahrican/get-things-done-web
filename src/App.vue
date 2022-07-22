@@ -32,4 +32,9 @@
 .flex-grow {
   flex-grow: 1;
 }
+
+el-menu-item router-link {
+  text-decoration: none !important;
+}
+
 </style>
