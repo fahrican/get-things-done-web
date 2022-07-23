@@ -83,9 +83,9 @@ header {
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 99;
   width: 100%;
-  position: fixed;
   transition: 0.5s ease all;
   color: white;
+  margin-bottom: 0.5rem;
 
   nav {
     position: relative;
