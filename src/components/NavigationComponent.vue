@@ -80,7 +80,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 
 header {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: #378396;
   z-index: 99;
   width: 100%;
   transition: 0.5s ease all;
@@ -121,8 +121,8 @@ header {
     border-bottom: 1px solid transparent;
 
     &:hover {
-      color: #00afea;
-      background-color: #00afea;
+      color: black;
+      background-color: white;
     }
   }
 
@@ -131,7 +131,8 @@ header {
     align-items: center;
 
     img {
-      width: 50px;
+      width: 300px;
+      height: 100px;
       transition: 0.5s ease all;
     }
   }
