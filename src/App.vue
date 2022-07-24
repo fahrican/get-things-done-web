@@ -45,15 +45,13 @@ import NavigationComponent from "@/components/NavigationComponent.vue";
   font-weight: 400;
 }
 
+h1 {
+  text-align: center;
+}
+
 .app {
   min-height: 100vh;
   position: relative;
   background-color: #f1f1f1;
-}
-
-.container {
-  padding: 0 20px;
-  max-width: 1140px;
-  margin: 0 auto;
 }
 </style>
