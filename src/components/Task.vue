@@ -22,10 +22,8 @@
       <p>createdOn: {{ task.createdOn }}</p>
       <p>time interval: {{ task.timeInterval }}</p>
       <p>priority: {{ task.priority }}</p>
-      <div class="icons">
         <i @click="$emit('delete-task', task.id)" class="fas fa-trash"/>
         <router-link @click="storeSelectedTask(task)" to="edit-task"><i class="fas fa-edit"/></router-link>
-      </div>
     </div>
   </div>
 
@@ -69,14 +67,6 @@ export default defineComponent({
   margin-top: 0.5rem;
   border-bottom: 0.5rem;
 }
-
-
-.icons {
-  margin: auto;
-  display: block;
-  text-align: center;
-}
-
 
 h3 {
   margin: 0.5rem;
