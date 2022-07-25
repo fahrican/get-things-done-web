@@ -33,12 +33,25 @@
     </form>-->
 
   <form class="form-inline" @submit="onSubmit">
-    <label class="user-input" for="email">Email:</label>
-    <input class="user-input" type="email" id="email" placeholder="Enter email" name="email">
-    <label class="user-input" for="pwd">Password:</label>
-    <input class="user-input" type="password" id="pwd" placeholder="Enter password" name="pswd">
+    <label class="user-input" for="task">Task:</label>
+    <input class="user-input" type="text" placeholder="Feed the cat.." name="description" v-model="myTask.description">
+    <label class="user-input" for="time-interval">Time Interval:</label>
+    <input class="user-input" type="text" placeholder="24h" name="time_interval" v-model="myTask.timeInterval">
+    <label class="user-input" for="time-taken">Time Taken:</label>
+    <input class="user-input" type="number" placeholder="0" name="time_taken" v-model="myTask.timeTaken">
+
+    <label class="user-input" for="priority">Please select your priority:</label>
+
+    <input type="radio" v-model="myTask.priority" name="priority" value="LOW" checked>
+    <label class="priority-label" for="low">LOW</label><br>
+
+    <input type="radio" v-model="myTask.priority" name="priority" value="MEDIUM">
+    <label class="priority-label" for="medium">MEDIUM</label><br>
+
+    <input type="radio" v-model="myTask.priority" name="priority" value="HIGH">
+    <label class="priority-label" for="high">HIGH</label><br>
     <label>
-      <input type="checkbox" name="remember"> Remember me
+      <input type="checkbox" name="reminder" v-model="myTask.isReminderSet"> Set reminder
     </label>
     <button class="submit-btn">Submit</button>
   </form>
@@ -50,6 +63,7 @@ import {defineComponent, reactive} from 'vue'
 import moment from "moment";
 import TaskApi from "@/services/TaskApi";
 import {TaskRequest} from "@/types/TaskRequest";
+import router from "@/router";
 
 export default defineComponent({
   name: "AddTask",
@@ -60,7 +74,7 @@ export default defineComponent({
       description: "",
       createdOn: "",
       timeInterval: "",
-      priority: 1,
+      priority: 0,
       finishedOn: "",
       id: 0,
       isReminderSet: false,
@@ -108,7 +122,9 @@ export default defineComponent({
       }
       const newTask = createNewTask();
       setPropertiesBlank();
-      return await tryPostRequest(newTask);
+      return await tryPostRequest(newTask).then(() => {
+        router.push('/')
+      })
     }
 
     const getTimestamp = () => {
@@ -196,6 +212,11 @@ export default defineComponent({
   width: 20%;
   text-align: center;
   justify-content: center;
+}
+
+.priority-label {
+  float: left !important;
+  display: flex !important;
 }
 
 
