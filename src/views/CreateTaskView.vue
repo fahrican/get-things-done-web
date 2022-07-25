@@ -1,36 +1,48 @@
 <template>
-  <form @submit="onSubmit" class="add-form">
-    <div class="form-control">
-      <label>Task</label>
-      <input type="text" v-model="myTask.description" name="text" placeholder="Add Task"/>
-    </div>
-    <div class="form-control">
-      <label>Time Interval</label>
-      <input type="text" v-model="myTask.timeInterval" name="time_interval" placeholder="24h"/>
-    </div>
-    <div class="form-control">
-      <label>Time Taken</label>
-      <input type="number" v-model="myTask.timeTaken" name="time_taken" placeholder="0"/>
-    </div>
-    <div>
-      <p>Please select your priority:</p>
+  <!--  <form @submit="onSubmit" class="add-form">
+      <div class="form-control">
+        <label>Task</label>
+        <input type="text" v-model="myTask.description" name="text" placeholder="Add Task"/>
+      </div>
+      <div class="form-control">
+        <label>Time Interval</label>
+        <input type="text" v-model="myTask.timeInterval" name="time_interval" placeholder="24h"/>
+      </div>
+      <div class="form-control">
+        <label>Time Taken</label>
+        <input type="number" v-model="myTask.timeTaken" name="time_taken" placeholder="0"/>
+      </div>
+      <div>
+        <p>Please select your priority:</p>
 
-      <input type="radio" v-model="myTask.priority" name="priority" value="LOW" checked>
-      <label for="low">LOW</label><br>
+        <input type="radio" v-model="myTask.priority" name="priority" value="LOW" checked>
+        <label for="low">LOW</label><br>
 
-      <input type="radio" v-model="myTask.priority" name="priority" value="MEDIUM">
-      <label for="medium">MEDIUM</label><br>
+        <input type="radio" v-model="myTask.priority" name="priority" value="MEDIUM">
+        <label for="medium">MEDIUM</label><br>
 
-      <input type="radio" v-model="myTask.priority" name="priority" value="HIGH">
-      <label for="high">HIGH</label><br>
-    </div>
-    <div class="form-control form-control-check">
-      <label>Set Reminder</label>
-      <input type="checkbox" v-model="myTask.isReminderSet" name="reminder"/>
-    </div>
+        <input type="radio" v-model="myTask.priority" name="priority" value="HIGH">
+        <label for="high">HIGH</label><br>
+      </div>
+      <div class="form-control form-control-check">
+        <label>Set Reminder</label>
+        <input type="checkbox" v-model="myTask.isReminderSet" name="reminder"/>
+      </div>
 
-    <input type="submit" value="Save Task" class="btn btn-block"/>
+      <input type="submit" value="Save Task" class="btn btn-block"/>
+    </form>-->
+
+  <form class="form-inline" @submit="onSubmit">
+    <label class="user-input" for="email">Email:</label>
+    <input class="user-input" type="email" id="email" placeholder="Enter email" name="email">
+    <label class="user-input" for="pwd">Password:</label>
+    <input class="user-input" type="password" id="pwd" placeholder="Enter password" name="pswd">
+    <label>
+      <input type="checkbox" name="remember"> Remember me
+    </label>
+    <button class="submit-btn">Submit</button>
   </form>
+
 </template>
 
 <script lang="ts">
@@ -110,6 +122,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
+/*
+
 .add-form {
   margin-bottom: 40px;
 }
@@ -144,4 +158,73 @@ export default defineComponent({
   flex: 2;
   height: 20px;
 }
+*/
+.form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 0.5rem auto;
+}
+
+.form-inline label {
+  margin: 5px auto 5px auto;
+  display: inline-block;
+}
+
+.form-inline input {
+  vertical-align: middle;
+  margin: 5px auto 5px auto;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  display: inline-block;
+}
+
+.user-input {
+  width: 50%;
+}
+
+.submit-btn {
+  padding: 10px 20px;
+  background-color: dodgerblue;
+  border: 1px solid #ddd;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  margin: 0 auto;
+  width: 20%;
+  text-align: center;
+  justify-content: center;
+}
+
+
+.form-inline button:hover {
+  background-color: royalblue;
+}
+
+@media (max-width: 800px) {
+  .form-inline input {
+    margin: 10px auto;
+  }
+
+  .user-input {
+    width: 90%;
+  }
+
+  .submit-btn {
+    padding: 10px 20px;
+    background-color: dodgerblue;
+    border: 1px solid #ddd;
+    color: white;
+    cursor: pointer;
+    max-width: 90%;
+    text-align: center;
+    margin: 0 auto;
+    width: 90%;
+    justify-content: center;
+  }
+
+}
+
 </style>
