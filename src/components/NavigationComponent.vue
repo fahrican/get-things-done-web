@@ -14,6 +14,11 @@
         <li>
           <router-link class="link" :to="{name: 'all-tasks'}">All Tasks</router-link>
         </li>
+        <li>
+          <button class="button-28">
+            <router-link class="link-create" :to="{name: 'create-task'}">Create Task</router-link>
+          </button>
+        </li>
       </ul>
       <div class="icon">
         <i @click="toggleMobileNav" v-show="mobile" class="fas fa-bars" :class="{'icon-active': mobileNav}"></i>
@@ -28,6 +33,9 @@
           </li>
           <li>
             <router-link class="link" :to="{name: 'all-tasks'}">All Tasks</router-link>
+          </li>
+          <li>
+            <router-link class="link" :to="{name: 'create-task'}">Create Task</router-link>
           </li>
         </ul>
       </transition>
@@ -108,6 +116,14 @@ header {
     text-decoration: none;
   }
 
+  ul,
+  .link-create {
+    font-weight: 500;
+    color: black;
+    list-style: none;
+    text-decoration: none;
+  }
+
   li {
     text-transform: uppercase;
     padding: 16px;
@@ -123,6 +139,17 @@ header {
     &:hover {
       color: black;
       background-color: white;
+    }
+  }
+
+  .link-create {
+    font-size: 14px;
+    transition: 0.5s ease all;
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
+
+    &:hover {
+      color: white;
     }
   }
 
@@ -211,6 +238,55 @@ header {
         }
       }
     }
+  }
+
+  /* create task button CSS*/
+  .button-28 {
+    appearance: none;
+    background-color: white;
+    border: 2px solid #1A1A1A;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: #3B3B3B;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+    min-height: 60px;
+    min-width: 0;
+    outline: none;
+    padding: 16px 24px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 100%;
+    will-change: transform;
+  }
+
+  .button-28:disabled {
+    pointer-events: none;
+  }
+
+  .button-28:hover {
+    color: #fff;
+    background-color: #1A1A1A;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+
+    .link-create {
+      color: white;
+    }
+  }
+
+  .button-28:active {
+    box-shadow: none;
+    transform: translateY(0);
   }
 }
 
