@@ -15,7 +15,7 @@
           <router-link class="link" :to="{name: 'all-tasks'}">All Tasks</router-link>
         </li>
         <li>
-          <button class="button-28">
+          <button class="create-task-btn">
             <router-link class="link-create" :to="{name: 'create-task'}">Create Task</router-link>
           </button>
         </li>
@@ -35,7 +35,9 @@
             <router-link class="link" :to="{name: 'all-tasks'}">All Tasks</router-link>
           </li>
           <li>
-            <router-link class="link" :to="{name: 'create-task'}">Create Task</router-link>
+            <button class="create-task-btn">
+              <router-link class="link-create" :to="{name: 'create-task'}">Create Task</router-link>
+            </button>
           </li>
         </ul>
       </transition>
@@ -142,17 +144,6 @@ header {
     }
   }
 
-  .link-create {
-    font-size: 14px;
-    transition: 0.5s ease all;
-    padding-bottom: 4px;
-    border-bottom: 1px solid transparent;
-
-    &:hover {
-      color: white;
-    }
-  }
-
   .branding {
     display: flex;
     align-items: center;
@@ -207,6 +198,10 @@ header {
       .link {
         color: black;
       }
+
+      button {
+        width: 90%;
+      }
     }
   }
 
@@ -241,7 +236,7 @@ header {
   }
 
   /* create task button CSS*/
-  .button-28 {
+  .create-task-btn {
     appearance: none;
     background-color: white;
     border: 2px solid #1A1A1A;
@@ -269,11 +264,11 @@ header {
     will-change: transform;
   }
 
-  .button-28:disabled {
+  .create-task-btn:disabled {
     pointer-events: none;
   }
 
-  .button-28:hover {
+  .create-task-btn:hover {
     color: #fff;
     background-color: #1A1A1A;
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
@@ -284,7 +279,7 @@ header {
     }
   }
 
-  .button-28:active {
+  .create-task-btn:active {
     box-shadow: none;
     transform: translateY(0);
   }
