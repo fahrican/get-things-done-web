@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import Task from './Task.vue';
+import Task from './TaskComponent.vue';
 import {defineComponent, PropType} from "vue";
 import {TaskRequest} from "@/types/TaskRequest";
 import TaskApi from "@/services/TaskApi";
