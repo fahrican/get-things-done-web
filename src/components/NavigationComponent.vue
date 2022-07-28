@@ -2,7 +2,7 @@
   <header :class="{'scrolled-nav': scrolledNav}">
     <nav>
       <div class="branding">
-        <img src="@/assets/logo_getthingdone.svg" alt="logo"/>
+        <a href="/"><img src="@/assets/logo_getthingdone.svg" alt="logo"/></a>
       </div>
       <ul v-show="!mobile" class="navigation">
         <li>
