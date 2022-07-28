@@ -3,23 +3,14 @@
   <Tasks :task-state="taskState"/>
 </template>
 
-<script lang="ts">
-import {defineComponent, ref} from "vue";
+<script lang="ts" setup>
+import {ref} from "vue";
 import Tasks from "@/components/Tasks.vue";
 import {TaskState} from "@/types/TaskState";
 
 
-export default defineComponent({
-  name: "OpenTasksView",
-  components: {
-    Tasks
-  },
-  setup() {
-    const taskState = ref(TaskState.OPEN)
+const taskState = ref(TaskState.OPEN)
 
-    return {taskState}
-  }
-});
 </script>
 
 <style lang="scss" scoped>
