@@ -3,22 +3,14 @@
   <Tasks :task-state="taskState"/>
 </template>
 
-<script lang="ts">
-import {defineComponent, ref} from "vue";
+<script lang="ts" setup>
+import {ref} from "vue";
 import Tasks from "@/components/Tasks.vue";
 import {TaskState} from "@/types/TaskState";
 
-export default defineComponent({
-  name: "ClosedTasksView",
-  components: {
-    Tasks
-  },
-  setup() {
-    const taskState = ref(TaskState.CLOSED)
 
-    return {taskState}
-  }
-});
+const taskState = ref(TaskState.CLOSED)
+
 </script>
 
 <style scoped>
