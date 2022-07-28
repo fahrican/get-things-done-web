@@ -1,16 +1,12 @@
 <template>
-  <h2>404</h2>
-  <h3>Page Not Found</h3>
+    <div class="container">
+      <h2>404</h2>
+      <h3>Page Not Found</h3>
+    </div>
 </template>
 
-<script lang="ts">
-import {defineComponent} from "vue";
-
-export default defineComponent({
-  name: "NotFoundView"
-});
+<script lang="ts" setup>
 </script>
 
 <style scoped>
-
 </style>
