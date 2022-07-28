@@ -15,7 +15,7 @@ import {TaskState} from "@/types/TaskState";
 
 export default defineComponent({
   name: "TasksComponent",
-  emits: ["delete-task", "toggle-reminder"],
+  emits: ["delete-task"],
   components: {
     TaskComponent
   },
