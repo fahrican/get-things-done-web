@@ -47,50 +47,6 @@ export default defineComponent({
     this.tasks = await this.fetchTasks();
   },
   methods: {
-    async toggleReminder1(id: number): Promise<void> {
-      const taskToToggle = await this.fetchTask(id);
-      const updateTask = {...taskToToggle, reminder: !taskToToggle.reminder};
-      const res = await fetch(`http://localhost:3000/tasks/${id}`, {
-        method: 'PUT',
-        headers: {'Content-type': 'application/json'},
-        body: JSON.stringify(updateTask)
-      });
-
-      const data = await res.json();
-
-      this.tasks = this.tasks.map((task) => task.id === id ? {
-        ...task,
-        reminder: data.reminder
-      } : task);
-    },
-    async toggleReminder2(id: number): Promise<void> {
-      const taskToToggle = await this.fetchTask(id);
-      console.log(taskToToggle);
-      const updateTask: TaskRequest = {
-        description: "meet Stefan",
-        createdOn: "2022-06-24T23:12:53",
-        timeInterval: "7d",
-        priority: 1,
-        finishedOn: "",
-        id: 0,
-        isReminderSet: false,
-        isTaskOpen: true,
-        startedOn: "",
-        timeTaken: 0
-      };
-      console.log(updateTask);
-      const res = await TaskApi.updateTaskWithUri(id, updateTask)
-      console.log('response: ');
-      console.log(res);
-
-      const data = await res.data
-      console.log(data);
-
-      this.tasks = this.tasks.map((task) => task.id === id ? {
-        ...task,
-        reminder: data.reminder
-      } : task);
-    },
     async toggleReminder(id: number): Promise<void> {
       const taskToToggle = await this.fetchTask(id);
       console.log(taskToToggle);
