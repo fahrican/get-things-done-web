@@ -1,29 +1,3 @@
-<!--<template>
-  <header>
-    <router-link class="logo" to="/">
-      <img src="../src/assets/logo_getthingdone.png" alt="get_things_done logo" width="344"
-           height="100">
-    </router-link>
-    <nav>
-      <ul class="menu">
-        <li>
-          <router-link :to="{name: 'open-tasks'}">Open Tasks</router-link>
-        </li>
-        <li>
-          <router-link :to="{name: 'closed-tasks'}">Closed Tasks</router-link>
-        </li>
-        <li>
-          <router-link :to="{name: 'all-tasks'}">All Tasks</router-link>
-        </li>
-      </ul>
-      <button>
-        <router-link :to="{name: 'create-task'}">Create Task</router-link>
-      </button>
-    </nav>
-  </header>
-  <router-view/>
-</template>-->
-
 <template>
   <NavigationComponent/>
   <router-view/>
