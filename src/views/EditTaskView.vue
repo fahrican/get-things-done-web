@@ -19,7 +19,7 @@
 
     <label class="user-input" for="is-task-open">Is task still open?</label>
 
-    <input type="radio" v-model="saveTask.isTaskOpen" name="is-task-open" value="TRUE" checked>
+    <input type="radio" v-model="saveTask.isTaskOpen" name="is-task-open" value="TRUE">
     <label class="priority-label" for="true">TRUE</label><br>
 
     <input type="radio" v-model="saveTask.isTaskOpen" name="is-task-open" value="FALSE">
