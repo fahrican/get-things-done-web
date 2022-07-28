@@ -25,83 +25,76 @@
 
 </template>
 
-<script lang="ts">
-import {defineComponent, reactive} from 'vue'
+<script lang="ts" setup>
+import {reactive} from 'vue'
 import moment from "moment";
 import TaskApi from "@/services/TaskApi";
 import {TaskRequest} from "@/types/TaskRequest";
 import router from "@/router";
 
-export default defineComponent({
-  name: "AddTask",
-  components: {},
-  setup() {
+const myTask: TaskRequest = reactive({
+  description: "",
+  createdOn: "",
+  timeInterval: "",
+  priority: 0,
+  finishedOn: "",
+  id: 0,
+  isReminderSet: false,
+  isTaskOpen: true,
+  startedOn: "",
+  timeTaken: 0
+})
 
-    const myTask: TaskRequest = reactive({
-      description: "",
-      createdOn: "",
-      timeInterval: "",
-      priority: 0,
-      finishedOn: "",
-      id: 0,
-      isReminderSet: false,
-      isTaskOpen: true,
-      startedOn: "",
-      timeTaken: 0
-    })
+function createNewTask(): TaskRequest {
+  return {
+    description: myTask.description,
+    timeInterval: myTask.timeInterval,
+    timeTaken: myTask.timeTaken,
+    priority: myTask.priority,
+    isReminderSet: myTask.isReminderSet,
+    createdOn: getTimestamp(),
+    isTaskOpen: true,
+    finishedOn: "",
+    id: 0,
+    startedOn: "",
+  };
+}
 
-    function createNewTask(): TaskRequest {
-      return {
-        description: myTask.description,
-        timeInterval: myTask.timeInterval,
-        timeTaken: myTask.timeTaken,
-        priority: myTask.priority,
-        isReminderSet: myTask.isReminderSet,
-        createdOn: getTimestamp(),
-        isTaskOpen: true,
-        finishedOn: "",
-        id: 0,
-        startedOn: "",
-      };
-    }
+function setPropertiesBlank() {
+  myTask.description = '';
+  myTask.timeInterval = '';
+  myTask.timeTaken = 0;
+  myTask.isReminderSet = false;
+}
 
-    function setPropertiesBlank() {
-      myTask.description = '';
-      myTask.timeInterval = '';
-      myTask.timeTaken = 0;
-      myTask.isReminderSet = false;
-    }
-
-    async function tryPostRequest(newTask: TaskRequest) {
-      try {
-        const response = await TaskApi.createTask(newTask)
-        return response.data
-      } catch (err) {
-        console.log(err)
-      }
-    }
-
-    const onSubmit = async (e: Event) => {
-      e.preventDefault()
-      if (!myTask.description) {
-        alert('Please add a task')
-        return
-      }
-      const newTask = createNewTask();
-      setPropertiesBlank();
-      return await tryPostRequest(newTask).then(() => {
-        router.push('/')
-      })
-    }
-
-    const getTimestamp = () => {
-      // example: "2022-06-22T23:35:53"
-      const DATE_TIME_FORMAT = 'YYYY-MM-DDTHH:mm:ss';
-      return (moment(new Date())).format(DATE_TIME_FORMAT);
-    }
-    return {myTask, onSubmit}
+async function tryPostRequest(newTask: TaskRequest) {
+  try {
+    const response = await TaskApi.createTask(newTask)
+    return response.data
+  } catch (err) {
+    console.log(err)
   }
-});
+}
+
+const onSubmit = async (e: Event) => {
+  e.preventDefault()
+  if (!myTask.description) {
+    alert('Please add a task')
+    return
+  }
+  const newTask = createNewTask();
+  setPropertiesBlank();
+  return await tryPostRequest(newTask).then(() => {
+    router.push('/')
+  })
+}
+
+const getTimestamp = () => {
+  // example: "2022-06-22T23:35:53"
+  const DATE_TIME_FORMAT = 'YYYY-MM-DDTHH:mm:ss';
+  return (moment(new Date())).format(DATE_TIME_FORMAT);
+}
+
 </script>
 
 <style scoped>
