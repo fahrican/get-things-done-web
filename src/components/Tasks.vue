@@ -1,7 +1,6 @@
 <template>
   <div :key="task.id" v-for="task in tasks">
     <Task
-        @toggle-reminder="toggleReminder"
         @delete-task="deleteTask"
         :task="task"/>
   </div>
@@ -10,7 +9,6 @@
 <script lang="ts">
 import Task from './TaskComponent.vue';
 import {defineComponent, PropType} from "vue";
-import {TaskRequest} from "@/types/TaskRequest";
 import TaskApi from "@/services/TaskApi";
 import {TaskState} from "@/types/TaskState";
 
@@ -47,34 +45,6 @@ export default defineComponent({
     this.tasks = await this.fetchTasks();
   },
   methods: {
-    async toggleReminder(id: number): Promise<void> {
-      const taskToToggle = await this.fetchTask(id);
-      console.log(taskToToggle);
-      const updateTask: TaskRequest = {
-        description: "meet Stefan",
-        createdOn: "2022-06-24T23:12:53",
-        timeInterval: "7d",
-        priority: 1,
-        finishedOn: "",
-        id: 0,
-        isReminderSet: false,
-        isTaskOpen: true,
-        startedOn: "",
-        timeTaken: 0
-      };
-      console.log(updateTask);
-      const res = await TaskApi.updateTaskWithUri(id, updateTask)
-      console.log('response: ');
-      console.log(res);
-
-      const data = await res.data
-      console.log(data);
-
-      this.tasks = this.tasks.map((task) => task.id === id ? {
-        ...task,
-        reminder: data.reminder
-      } : task);
-    },
     async fetchTask(id: number) {
       const res = await TaskApi.getTask(id);
       return res.data
