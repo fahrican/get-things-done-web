@@ -19,7 +19,7 @@ import {PropType, defineProps} from "vue";
 import {TaskRequest} from "@/types/TaskRequest";
 import {useSavedTask} from "@/stores/useSavedTask";
 
-const props = defineProps({
+defineProps({
   task: Object as PropType<TaskRequest>,
 });
 
