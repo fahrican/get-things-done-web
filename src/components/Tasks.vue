@@ -45,10 +45,6 @@ export default defineComponent({
     this.tasks = await this.fetchTasks();
   },
   methods: {
-    async fetchTask(id: number) {
-      const res = await TaskApi.getTask(id);
-      return res.data
-    },
     async deleteTask(id: number): Promise<void> {
       if (confirm('Are you sure, you want to delete?')) {
         const res = await TaskApi.deleteTask(id);
