@@ -1,11 +1,11 @@
 <template>
   <h1>Closed Tasks</h1>
-  <Tasks :task-state="taskState"/>
+  <TasksComponent :task-state="taskState"/>
 </template>
 
 <script lang="ts" setup>
 import {ref} from "vue";
-import Tasks from "@/components/Tasks.vue";
+import TasksComponent from "@/components/TasksComponent.vue";
 import {TaskState} from "@/types/TaskState";
 
 

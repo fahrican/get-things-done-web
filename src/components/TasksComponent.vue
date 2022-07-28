@@ -1,13 +1,13 @@
 <template>
   <div :key="task.id" v-for="task in tasks">
-    <Task
+    <TaskComponent
         @delete-task="deleteTask"
         :task="task"/>
   </div>
 </template>
 
 <script lang="ts">
-import Task from './TaskComponent.vue';
+import TaskComponent from './TaskComponent.vue';
 import {defineComponent, PropType} from "vue";
 import TaskApi from "@/services/TaskApi";
 import {TaskState} from "@/types/TaskState";
@@ -17,7 +17,7 @@ export default defineComponent({
   name: "TasksComponent",
   emits: ["delete-task", "toggle-reminder"],
   components: {
-    Task
+    TaskComponent
   },
   props: {
     taskState: {
