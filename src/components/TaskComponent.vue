@@ -7,32 +7,26 @@
       <p>createdOn: {{ task.createdOn }}</p>
       <p>time interval: {{ task.timeInterval }}</p>
       <p>priority: {{ task.priority }}</p>
-        <i @click="$emit('delete-task', task.id)" class="fas fa-trash"/>
-        <router-link @click="storeSelectedTask(task)" to="edit-task"><i class="fas fa-edit"/></router-link>
+      <i @click="$emit('delete-task', task.id)" class="fas fa-trash"/>
+      <router-link @click="storeSelectedTask(task)" to="edit-task"><i class="fas fa-edit"/></router-link>
     </div>
   </div>
 
 </template>
 
-<script lang="ts">
-import {defineComponent, PropType} from "vue";
+<script lang="ts" setup>
+import {PropType, defineProps} from "vue";
 import {TaskRequest} from "@/types/TaskRequest";
 import {useSavedTask} from "@/stores/useSavedTask";
 
-
-export default defineComponent({
-  name: "TaskComponent",
-  props: {
-    task: Object as PropType<TaskRequest>
-  },
-  setup() {
-    const selectedTask = useSavedTask();
-
-    const storeSelectedTask = (task: TaskRequest) => selectedTask.storeTask(task);
-
-    return {storeSelectedTask}
-  }
+const props = defineProps({
+  task: Object as PropType<TaskRequest>,
 });
+
+const selectedTask = useSavedTask();
+
+const storeSelectedTask = (task: TaskRequest) => selectedTask.storeTask(task);
+
 
 </script>
 
