@@ -9,38 +9,38 @@ import EditTaskView from "@/views/EditTaskView.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
-        path: '/open-tasks',
+        path: '/app/open-tasks',
         name: 'open-tasks',
         component: OpenTasksView
     },
     {
-        path: '/closed-tasks',
+        path: '/app/closed-tasks',
         name: 'closed-tasks',
         component: ClosedTasksView
     },
     {
-        path: '/all-tasks',
+        path: '/app/all-tasks',
         name: 'all-tasks',
         component: AllTasksView
     },
     {
-        path: '/create-task',
+        path: '/app/create-task',
         name: 'create-task',
         component: CreateTaskView
     },
     {
-        path: '/single-task',
+        path: '/app/single-task',
         name: 'single-task',
         component: SingleTaskView
     },
     {
-        path: '/edit-task',
+        path: '/app/edit-task',
         name: 'edit-task',
         component: EditTaskView
     },
     {
         path: '/',
-        redirect: '/open-tasks'
+        redirect: '/app/open-tasks'
     },
     {
         path: '/:catchAll(.*)',
