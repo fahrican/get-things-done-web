@@ -41,11 +41,6 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
         redirect: '/app/open-tasks'
-    },
-    {
-        path: '/:catchAll(.*)',
-        name: 'not-found',
-        component: NotFoundView
     }
 ]
 
