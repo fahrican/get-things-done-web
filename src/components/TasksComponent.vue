@@ -37,14 +37,13 @@ const deleteTask = async (id: number) => {
 async function fetchTasks() {
   try {
     let response = null;
-/*    if (props.taskState === TaskState.OPEN) {
-      response = await TaskApi.getOpenTasks();
+    if (props.taskState === TaskState.OPEN) {
+      response = await TaskApi.getTasks('open');
     } else if (props.taskState === TaskState.CLOSED) {
-      response = await TaskApi.getClosedTasks();
+      response = await TaskApi.getTasks('closed');
     } else if (props.taskState === TaskState.ALL) {
-      response = await TaskApi.getAllTasks();
-    }*/
-    response = await TaskApi.getTasks();
+      response = await TaskApi.getTasks('');
+    }
     response?.data.forEach((task: TaskRequest) => tasks.push(task));
   } catch (err) {
     console.log('error loadQuote: ' + err)

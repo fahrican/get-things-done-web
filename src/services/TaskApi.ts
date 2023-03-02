@@ -5,8 +5,8 @@ export default {
     getTask(id: number) {
         return Api().get(`/tasks/${id}`)
     },
-    getTasks() {
-        return Api().get('/tasks')
+    getTasks(status: string) {
+        return Api().get(`/tasks?status=${status}`)
     },
     createTask(data: TaskRequest) {
         return Api().post('/tasks', data)
