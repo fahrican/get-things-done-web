@@ -1,10 +1,10 @@
 import {defineStore} from "pinia";
 import {PropType} from "vue";
-import {TaskRequest} from "@/types/TaskRequest";
+import {TaskDto} from "@/types/TaskDto";
 
 export const useSavedTask = defineStore("selectedTask", {
     state: () => ({
-        saveTask: Object as PropType<TaskRequest>
+        saveTask: Object as PropType<TaskDto>
     }),
     getters: {
         getSavedTask: (state) => {
@@ -12,7 +12,7 @@ export const useSavedTask = defineStore("selectedTask", {
         }
     },
     actions: {
-        storeTask(selectedTask: TaskRequest) {
+        storeTask(selectedTask: TaskDto) {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             this.saveTask = selectedTask;

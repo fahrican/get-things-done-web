@@ -8,7 +8,7 @@
 
     <label class="user-input" for="created-on">Created on:</label>
     <input class="user-input" type="text" placeholder="Could be: 2022-06-22T23:35:53" name="created-on"
-           v-model="saveTask.createdOn">
+           v-model="saveTask.createdOn" disabled>
 
     <label class="user-input" for="time-interval">Time Interval:</label>
     <input class="user-input" type="text" placeholder="Could be: 24h" name="time_interval"
@@ -55,22 +55,21 @@ import {useSavedTask} from "@/stores/useSavedTask";
 import {storeToRefs} from "pinia";
 import router from "@/router";
 import TaskApi from "@/services/TaskApi";
-import {TaskRequest} from "@/types/TaskRequest";
 import {reactive} from "vue";
+import {TaskUpdateRequest} from "@/types/TaskUpdateRequest";
+
 
 const selectedTask = useSavedTask();
 const {saveTask} = storeToRefs(selectedTask);
-let myTask: TaskRequest;
+let myTask: TaskUpdateRequest;
 
 const onSubmit = async (e: Event) => {
 
   myTask = reactive({
     description: saveTask.value.description,
-    createdOn: saveTask.value.createdOn,
     timeInterval: saveTask.value.timeInterval,
     priority: saveTask.value.priority,
     finishedOn: saveTask.value.finishedOn,
-    id: saveTask.value.id,
     isReminderSet: saveTask.value.isReminderSet,
     isTaskOpen: saveTask.value.isTaskOpen,
     startedOn: saveTask.value.startedOn,
@@ -82,7 +81,7 @@ const onSubmit = async (e: Event) => {
     alert('Please add a task')
     return
   }
-  return await TaskApi.updateTask(myTask.id, myTask).then(() => {
+  return await TaskApi.updateTask(saveTask.value.id, myTask).then(() => {
     router.push('/')
   });
 }

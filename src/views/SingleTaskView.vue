@@ -1,8 +1,9 @@
 <template>
   <div class="card">
     <div class="container">
-      <h1>Single Task</h1>
-      <h3>{{ saveTask.description }}</h3>
+      <h1>Single Task</h1><br />
+      <h3>task id: {{ saveTask.id }}</h3>
+      <h2>{{ saveTask.description }}</h2>
       <p>createdOn: {{ saveTask.createdOn }}</p>
       <p>time interval: {{ saveTask.timeInterval }}</p>
       <p>priority: {{ saveTask.priority }}</p>
@@ -21,13 +22,13 @@
 <script lang="ts" setup>
 import {storeToRefs} from "pinia";
 import {useSavedTask} from "@/stores/useSavedTask";
-import {TaskRequest} from "@/types/TaskRequest";
 import TaskApi from "@/services/TaskApi";
 import router from "@/router";
+import {TaskDto} from "@/types/TaskDto";
 
 const selectedTask = useSavedTask();
 const {saveTask} = storeToRefs(selectedTask);
-const storeSelectedTask = (task: TaskRequest) => selectedTask.storeTask(task);
+const storeSelectedTask = (task: TaskDto) => selectedTask.storeTask(task);
 
 const deleteTask = async (id: number) => {
   if (confirm('Are you sure, you want to delete?')) {

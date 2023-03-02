@@ -16,16 +16,16 @@
 
 <script lang="ts" setup>
 import {PropType, defineProps} from "vue";
-import {TaskRequest} from "@/types/TaskRequest";
 import {useSavedTask} from "@/stores/useSavedTask";
+import {TaskDto} from "@/types/TaskDto";
 
 defineProps({
-  task: Object as PropType<TaskRequest>,
+  task: Object as PropType<TaskDto>,
 });
 
 const selectedTask = useSavedTask();
 
-const storeSelectedTask = (task: TaskRequest) => selectedTask.storeTask(task);
+const storeSelectedTask = (task: TaskDto) => selectedTask.storeTask(task);
 
 
 </script>
