@@ -11,7 +11,7 @@ import TaskComponent from './TaskComponent.vue';
 import {PropType, defineEmits, reactive, defineProps} from "vue";
 import TaskApi from "@/services/TaskApi";
 import {TaskState} from "@/types/TaskState";
-import {TaskRequest} from "@/types/TaskRequest";
+import {TaskDto} from "@/types/TaskDto";
 
 
 defineEmits(["delete-task"]);
@@ -20,13 +20,13 @@ const props = defineProps({
   taskState: Object as PropType<TaskState>
 });
 
-let tasks = reactive<TaskRequest[]>([])
+let tasks = reactive<TaskDto[]>([])
 
 const deleteTask = async (id: number) => {
   if (confirm('Are you sure, you want to delete?')) {
     const res = await TaskApi.deleteTask(id);
 
-    res.status === 200
+    res.status === 204
         ? (tasks = tasks.filter((task) => task.id !== id))
         : alert('Error while deleting task');
 
@@ -44,7 +44,7 @@ async function fetchTasks() {
     } else if (props.taskState === TaskState.ALL) {
       response = await TaskApi.getTasks('');
     }
-    response?.data.forEach((task: TaskRequest) => tasks.push(task));
+    response?.data.forEach((task: TaskDto) => tasks.push(task));
   } catch (err) {
     console.log('error loadQuote: ' + err)
   }
