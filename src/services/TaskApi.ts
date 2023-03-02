@@ -3,27 +3,18 @@ import {TaskRequest} from "@/types/TaskRequest";
 
 export default {
     getTask(id: number) {
-        return Api().get(`/api/task/${id}`)
+        return Api().get(`/tasks/${id}`)
     },
-    getOpenTasks() {
-        return Api().get('/api/open-tasks')
-    },
-    getClosedTasks() {
-        return Api().get('/api/closed-tasks')
-    },
-    getAllTasks() {
-        return Api().get('/api/all-tasks')
+    getTasks() {
+        return Api().get('/tasks')
     },
     createTask(data: TaskRequest) {
-        return Api().post('/api/create', data)
+        return Api().post('/tasks', data)
     },
     deleteTask(id: number) {
-        return Api().delete(`/api/delete/${id}`)
+        return Api().delete(`/tasks/${id}`)
     },
-    updateTaskWithObject(data: TaskRequest) {
-        return Api().put('/api/update', data)
-    },
-    updateTaskWithUri(id: number, data: TaskRequest) {
-        return Api().put(`/api/update/${id}`, data)
+    updateTask(id: number, data: TaskRequest) {
+        return Api().patch(`/tasks/${id}`, data)
     },
 }

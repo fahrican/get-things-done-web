@@ -82,7 +82,7 @@ const onSubmit = async (e: Event) => {
     alert('Please add a task')
     return
   }
-  return await TaskApi.updateTaskWithObject(myTask).then(() => {
+  return await TaskApi.updateTask(myTask.id, myTask).then(() => {
     router.push('/')
   });
 }
